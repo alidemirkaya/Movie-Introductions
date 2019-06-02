@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Filmler" Class="MovieScreenDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-9O1LVRH\SQLEXPRESS;Initial Catalog=Filmler;Integrated Security=True" SettingsObjectName="Movieintroductions.Properties.Settings" SettingsPropertyName="FilmlerConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Films" Member="Films">
+    <Type Name="Films">
+      <Column Name="Film_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Film_Name" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Film_Pic" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Explan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Vision_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Imdb" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Time" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Films_FilmScreen" Member="FilmScreen" ThisKey="Film_Id" OtherKey="Movie_Id" Type="FilmScreen" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FilmScreen" Member="FilmScreen">
+    <Type Name="FilmScreen">
+      <Column Name="FG_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Movie_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Picture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Films_FilmScreen" Member="Films" ThisKey="Movie_Id" OtherKey="Film_Id" Type="Films" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+</Database>
